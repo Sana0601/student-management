@@ -1,4 +1,5 @@
-package com.example.student_management.config;
+
+        package com.example.student_management.config;
 
 import com.example.student_management.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
@@ -38,12 +39,19 @@ public class SecurityConfig {
         configuration.setAllowedOriginPatterns(
                 List.of(
                         "http://localhost:5173",
+                        "https://student-management-frontend-bowc.onrender.com",
                         "https://*.vercel.app"
                 )
         );
 
         configuration.setAllowedMethods(
-                List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                List.of(
+                        "GET",
+                        "POST",
+                        "PUT",
+                        "DELETE",
+                        "OPTIONS"
+                )
         );
 
         configuration.setAllowedHeaders(
@@ -79,15 +87,18 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
+                        // Allow CORS preflight requests
                         .requestMatchers(HttpMethod.OPTIONS, "/**")
                         .permitAll()
 
+                        // Allow registration and login without JWT
                         .requestMatchers(
                                 "/api/students/register",
                                 "/api/students/login"
                         )
                         .permitAll()
 
+                        // All other APIs require authentication
                         .anyRequest()
                         .authenticated()
                 )
@@ -100,3 +111,4 @@ public class SecurityConfig {
         return http.build();
     }
 }
+

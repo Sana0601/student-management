@@ -13,7 +13,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/students")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "https://student-management-frontend-bowc.onrender.com"
+})
 public class StudentController {
 
     private final StudentService studentService;
