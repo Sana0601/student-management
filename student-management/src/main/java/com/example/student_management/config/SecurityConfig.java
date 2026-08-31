@@ -39,8 +39,8 @@ public class SecurityConfig {
         configuration.setAllowedOriginPatterns(
                 List.of(
                         "http://localhost:5173",
-                        "https://student-management-frontend-bowc.onrender.com",
-                        "https://*.vercel.app"
+                        "https://*.vercel.app",
+                        "https://student-management-frontend-bowc.onrender.com"
                 )
         );
 
@@ -87,18 +87,15 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
-                        // Allow CORS preflight requests
                         .requestMatchers(HttpMethod.OPTIONS, "/**")
                         .permitAll()
 
-                        // Allow registration and login without JWT
                         .requestMatchers(
                                 "/api/students/register",
                                 "/api/students/login"
                         )
                         .permitAll()
 
-                        // All other APIs require authentication
                         .anyRequest()
                         .authenticated()
                 )
