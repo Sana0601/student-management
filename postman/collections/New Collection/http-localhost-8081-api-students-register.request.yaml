@@ -1,0 +1,19 @@
+$kind: http-request
+name: http://localhost:8081/api/students/register
+description: ""
+url: |-
+  POST
+  http://localhost:8081/api/students/login
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"email\": \"asma@gmail.com\",\r
+
+    \    \"password\": \"123456\"\r
+
+    }"
+auth:
+  type: noauth
+order: 1788028109071
